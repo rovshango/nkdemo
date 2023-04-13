@@ -20,7 +20,7 @@ sudo apt-get install -y containerd.io
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo systemctl restart containerd
-sudo systemctl status containerd
+sudo systemctl status containerd | cat -
 sudo swapoff -a
 
 sudo apt-get install -y apt-transport-https ca-certificates curl
