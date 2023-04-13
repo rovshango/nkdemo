@@ -23,9 +23,10 @@ GHEALTH=$(curl -s http://$GRAFANA_IP:80/api/health | grep -o ok)
     exit 1
   fi
 
-#########################
+printf "\033[34mChecking elasticsearch service.\033[0m\n"
+
 # Get the Elasticsearch service URL
-ELASTIC_IP=$(kubectl get svc ELASTIC -o=jsonpath='{.spec.clusterIP}')
+ELASTIC_IP=$(kubectl get svc elasticsearch -o=jsonpath='{.spec.clusterIP}')
 
 # Check if the Elasticsearch service is running
 curl -I http://$ELASTIC_IP:9200
@@ -35,9 +36,12 @@ curl -s -o /dev/null -w "%{http_code}" http://$ELASTIC_IP:9200
 
 # Check if the Elasticsearch service is healthy
 curl -s http://$ELASTIC_IP:9200/_cluster/health | grep -o "\"status\":\"green\""
-#########################
+
+
+printf "\033[34mChecking mariadb service.\033[0m\n"
+
 # Get the MariaDB service URL
-MARIADB_IP=$(kubectl get svc MARIADB -o=jsonpath='{.spec.clusterIP}')
+MARIADB_IP=$(kubectl get svc mariadb -o=jsonpath='{.spec.clusterIP}')
 
 # Check if the MariaDB service is running
 curl -I http://$MARIADB_IP:3306
