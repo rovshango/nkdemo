@@ -9,8 +9,7 @@ sudo mv /tmp/eksctl /usr/bin
 
 eksctl version
 
-eksctl create cluster --name dev --version 1.25 --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name standard-workers --node-type t2.micro --nodes 3 --nodes-min 1 --nodes-max 4 --managed
-
+eksctl create cluster --name dev --version 1.25 --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name standard-workers --node-type t2.micro --nodes 3 --nodes-min 1 --nodes-max 3 --managed
 
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.11/2023-03-17/bin/linux/amd64/kubectl
 chmod +x ./kubectl
