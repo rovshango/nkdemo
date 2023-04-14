@@ -1,4 +1,4 @@
-after adding storageClassName: aws-gp2 to volumeClaimTemplates, everything resolved
+# after adding storageClassName: aws-gp2 to volumeClaimTemplates, everything resolved
 
       volumeClaimTemplates:
       - metadata:

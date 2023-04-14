@@ -1,6 +1,6 @@
 
 helm install mariadb bitnami/mariadb
-helm install grafana grafana/grafana --set service.type=NodePort
+helm install grafana grafana/grafana --set service.type=LoadBalancer
 helm install elasticsearch elastic/elasticsearch
 
 
