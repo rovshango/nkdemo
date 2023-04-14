@@ -3,7 +3,10 @@
 printf "\033[34mChecking grafana service.\033[0m\n"
 
 # Get the Grafana service URL
-GRAFANA_IP=$(kubectl get svc grafana -o=jsonpath='{.spec.clusterIP}')
+GRAFANA_IP=$(kubectl get svc grafana --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+# Get your 'admin' user password
+GADMIN=$(kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo)
 
 # Check if the Grafana service is running and accessible
 GSTATUS=$(curl -s -o /dev/null -w "%{http_code}" http://$GRAFANA_IP:80/login)
@@ -26,17 +29,19 @@ GHEALTH=$(curl -s http://$GRAFANA_IP:80/api/health | grep -o ok)
 printf "\033[34mChecking elasticsearch service.\033[0m\n"
 
 # Get the Elasticsearch service URL
-ELASTIC_IP=$(kubectl get svc elasticsearch -o=jsonpath='{.spec.clusterIP}')
+ELASTIC_IP=$(kubectl get svc elasticsearch-master --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 
-# Check if the Elasticsearch service is running
-curl -I http://$ELASTIC_IP:9200
-
-# Check if the Elasticsearch service is accessible
-curl -s -o /dev/null -w "%{http_code}" http://$ELASTIC_IP:9200
+# Retrieve elastic user's password
+EPASSWD=$(kubectl get secrets --namespace=default elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d)
 
 # Check if the Elasticsearch service is healthy
-curl -s http://$ELASTIC_IP:9200/_cluster/health | grep -o "\"status\":\"green\""
-
+ESTATUS=$(curl -s -k --user elastic:${EPASSWD} -X GET "https://${ELASTIC_IP}:9200/_cluster/health?pretty"  | jq -r '.status')
+  if [ $ESTATUS == "green" ]; then
+    printf "\033[32mSuccess: elasticsearch is running, accessible and healthy.\033[0m\n"
+  else
+    printf "\033[31mError: elasticsearch is not running or accessible or healthy.\033[0m\n"
+    exit 1
+  fi
 
 printf "\033[34mChecking mariadb service.\033[0m\n"
 

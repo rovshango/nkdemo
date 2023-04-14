@@ -32,6 +32,7 @@ kubectl create secret generic aws-secret \
     --from-literal "access_key=${AWS_SECRET_ACCESS_KEY}"
 
 sudo yum install git -y
+sudo yum install telnet -y
 
 helm upgrade --install aws-ebs-csi-driver \
     --namespace kube-system \
@@ -39,17 +40,4 @@ helm upgrade --install aws-ebs-csi-driver \
 
 kubectl get pods -n kube-system -l app.kubernetes.io/name=aws-ebs-csi-driver
 
-for x in `kubectl get pvc | awk {' print $1 '} | grep -v NAME`; do kubectl delete pvc $x; done
-
-
-aws ec2 create-volume --size 10 --availability-zone us-east-1a --volume-type gp2
-
-aws ec2 describe-volumes --filters Name=status,Values=available --region us-east-1
-aws ec2 wait volume-available --volume-ids vol-0d4bd59e48c3e7d0b
-
-# On all worker nodes
-aws ec2 attach-volume --volume-id vol-0d4bd59e48c3e7d0b --instance-id i-0f648f874f31103ba --device /dev/sdf
-aws ec2 attach-volume --volume-id vol-0d4bd59e48c3e7d0b --instance-id i-0c806b1b5524ac286 --device /dev/sdf
-aws ec2 attach-volume --volume-id vol-0d4bd59e48c3e7d0b --instance-id i-0b4c4390f67c76e42 --device /dev/sdf
-
-aws ec2 describe-instances --filters "Name=tag:eks:cluster-name,Values=dev" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text | tr '\n' ' ' | xargs -n 1 -P 0 aws ec2 attach-volume --volume-id vol-0d4bd59e48c3e7d0b --device /dev/sdf --instance-id
+#eksctl delete cluster dev
