@@ -16,11 +16,11 @@ Steps:
 
 1. Create AMI Insrance which accessible over internet or console page
 2. Create console user (example name: k8s-admin)
-    a. Attach Admin and follwing policy into the user:
-    https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
-    b. Set up access and security keys
-    c. Configure aws cli via aws configure command, using keys of new user
+    - Attach Admin and follwing policy into the user:
+      https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
+    - Set up access and security keys
+    - Configure aws cli via aws configure command, using keys of new user
 3. Follow and run commands in eksctl.sh file
-    Best practice to run command in batch, in order faster troubleshoot in case of failure
+    - Best practice to run command in batch, in order faster troubleshoot in case of failure
 4. Run helm_install_repos.sh script (bash helm_install_repos.sh)
-    It will download necessary helm repos and install MariaDB, Grafana & Elasticseach microservices
+    - It will download necessary helm repos and install MariaDB, Grafana & Elasticseach microservices
