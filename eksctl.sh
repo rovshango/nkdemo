@@ -31,8 +31,11 @@ kubectl create secret generic aws-secret \
     --from-literal "key_id=${AWS_ACCESS_KEY_ID}" \
     --from-literal "access_key=${AWS_SECRET_ACCESS_KEY}"
 
-sudo yum install git -y
-sudo yum install telnet -y
+sudo yum install git telnet jq -y
+
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+helm repo update
 
 helm upgrade --install aws-ebs-csi-driver \
     --namespace kube-system \
