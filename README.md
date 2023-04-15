@@ -6,6 +6,9 @@ This repository contains files and instruction to demonstrate following:
 
 **Please read all instruction and script comments before implementing it.**
 
+<span style="color: red">This text is red</span>
+
+
 Prerequisites:
 
 - AWS Console account.
