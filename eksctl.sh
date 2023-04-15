@@ -12,7 +12,7 @@ eksctl version
 # create eks cluster with 4 worker nodes
 # following command will take approx. 20 min to run 
 # in case of error either re-run or change AZ
-eksctl create cluster --name dev --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name ng-workers --node-type t3.medium --nodes 4 --nodes-min 1 --nodes-max 4 --managed
+eksctl create cluster --name dev --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name ng-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 4 --managed
 
 aws eks update-kubeconfig --name dev --region us-east-1
 
