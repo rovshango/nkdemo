@@ -1,25 +1,15 @@
-# setup eksctl command tool
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/bin
-
-# setup kubectl command tool
-curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
-
-eksctl version
-# create eks cluster with 4 worker nodes
-# following command will take approx. 20 min to run 
-# in case of error either re-run or change AZ
+# create eks cluster with 3 worker nodes
+# following command will take approx. 20-25 min to finish 
+# in case of error either re-run or change availabilty zones
 eksctl create cluster --name dev --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name ng-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 4 --managed
 
+# configure kubectl command, so it can access contral plane api
 aws eks update-kubeconfig --name dev --region us-east-1
 
 # check if you can see worker nodes
 kubectl get nodes
 
-# creating necessary compoenents for EBS CSI Driver
+# creating necessary components for ebs csi driver
 # source: https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
 eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=dev --approve
 eksctl create iamserviceaccount \
@@ -38,14 +28,7 @@ kubectl create secret generic aws-secret \
     --from-literal "key_id=${AWS_ACCESS_KEY_ID}" \
     --from-literal "access_key=${AWS_SECRET_ACCESS_KEY}"
 
-# we will need these tools
-sudo yum install git telnet jq -y
-
-# install helm tool, repos and driver
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
-helm repo update
-
+# install aws-ebs-csi-driver services via helm chart
 helm upgrade --install aws-ebs-csi-driver \
     --namespace kube-system \
     aws-ebs-csi-driver/aws-ebs-csi-driver
