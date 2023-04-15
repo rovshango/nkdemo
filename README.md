@@ -35,3 +35,7 @@ Steps:
 7. Run `helm-install-services.sh` script, which will
     - Install MariaDB, Grafana & Elasticseach microservices.
 8. Run `service-status.sh` script, to check microserices' status.
+
+References:
+- https://eksctl.io/introduction/
+- https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
