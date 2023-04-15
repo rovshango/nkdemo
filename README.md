@@ -17,6 +17,7 @@ Prerequisites:
 Steps:
 
 1. Create simple Amazon Linux EC2 Instance which accessible over internet or console page.
+    - Once instance up and running, install **git** tool: sudo yum install git -y
 2. Create IAM CLI user (example name: **k8s-admin**) with AdministratorAccess permission policy attached;
     - Configure aws CLI with this new user's access and security key in the Step 1 EC2 instance (choose same AZ where EC2 is running).
 3. Create IAM policy named aws-ebs-csi-driver with following json;
