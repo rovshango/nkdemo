@@ -12,6 +12,7 @@ Prerequisites:
 - Basic knowledge how to operate in AWS console.
 - Experience in launching, accessing, managing EC2 instance.
 - Experience in creating policies and users in AWS IAM service.
+- Experience in Kubernetes cluster management, using kubectl command line.
 
 Steps:
 
