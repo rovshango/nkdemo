@@ -4,7 +4,7 @@ This repository contains files and instruction to demonstrate following:
 - Installing MariaDB, Grafana and Elasticsearch services via Helm charts as POC.
 - Getting status of aformentioned services, whether they are running, accessible, and healthy.
 
-Please read all instruction and script comments before implementing it.
+**Please read all instruction and script comments before implementing it.**
 
 Prerequisites:
 
