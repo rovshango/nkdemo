@@ -13,11 +13,12 @@ Prerequisites:
 - Experience in launching, accessing, managing EC2 instance.
 - Experience in creating policies and users in AWS IAM service.
 - Experience in Kubernetes cluster management, using kubectl command line.
+- Experience in Helm command line tool.
 
 Steps:
 
-1. Create simple Amazon Linux EC2 Instance which accessible over internet or console page.
-    - Once instance up and running, install **git** tool: `sudo yum install git -y`
+1. Create simple Amazon Linux EC2 Instance which accessible over internet (SSH).
+    - Once instance up and running, connect to it & install **git** tool: `sudo yum install git -y`
     - Clone repository into EC2 Instance: `git clone https://github.com/rovshango/nkdemo.git`
     - Chagne to the repository directory: `cd nkdemo`
 2. Create IAM CLI user (example name: **k8s-admin**) with **AdministratorAccess** permission policy (AWS Managed) attached;
@@ -34,7 +35,8 @@ Steps:
     - **Note that first command, cluster creation, will take approximately 20 minutes**
 7. Run `helm-install-services.sh` script, which will
     - Install MariaDB, Grafana & Elasticseach microservices.
-8. Run `service-status.sh` script, to check microserices' status.
+8. Wait for 1 or 2 minutes & run `service-status.sh` script, to check microserices' status.
+    - You can (should) use also `kubectl get pods` & `kubectl get svc` commands to get status of Pods and Services.
 
 References:
 - https://eksctl.io/introduction/
