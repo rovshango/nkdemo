@@ -37,6 +37,8 @@ Steps:
     - Install MariaDB, Grafana & Elasticseach microservices.
 8. Wait for 1 or 2 minutes & run `service-status.sh` script, to check microserices' status.
     - You can (should) use also `kubectl get pods` & `kubectl get svc` commands to get status of Pods and Services.
+9. Once demo is finished run `clean-up.sh` script to delete all CF Stacks.
+10. Terminate EC2 Instance from Step 1.
 
 References:
 - https://eksctl.io/introduction/
