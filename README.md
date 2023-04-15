@@ -22,7 +22,7 @@ Steps:
 3. Create IAM policy named aws-ebs-csi-driver with following json;
     - https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json
     - Create IAM CLI user named **aws-ebs-csi-driver** and attach **aws-ebs-csi-driver** policy.
-    - Save its access and security keys for step 6.
+    - Save its access and security keys for Step 6.
 4. Run requirements.sh script, which will install essential tools.
 5. Run helm-repos.sh script, which will install helm tool and the necessary repositories.
 6. Follow and run commands in eksctl.sh file;
