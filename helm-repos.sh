@@ -10,11 +10,4 @@ helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-d
 helm repo update
 sleep 3
 
-helm install grafana grafana/grafana --set service.type=LoadBalancer
-sleep 5
-helm install elasticsearch elastic/elasticsearch --set service.type=LoadBalancer
-sleep 5
-helm install mariadb bitnami/mariadb
-sleep 5
-
 echo "Finished"
