@@ -38,7 +38,7 @@ Steps:
 8. Wait for 2 or 3 minutes & run `service-status.sh` script, to check microserices' status.
     - You can (should) use also `kubectl get pods` & `kubectl get svc` commands to get status of Pods and Services.
 9. Once demo is finished run `clean-up.sh` script to delete all microservices & CF Stacks.
-    - **Note that this proccess is also will take around 20 minutes.**
+    - **Note that this proccess is also will take around 15 minutes.**
 10. **Terminate EC2 Instance from Step 1.**
 11. **Delete all newly created volumes from EC2 dashboard.**
 
