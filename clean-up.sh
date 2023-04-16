@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#
+# Uninstall services
 helm uninstall grafana
 helm uninstall elasticsearch
 helm uninstall mariadb
