@@ -35,13 +35,15 @@ Steps:
     - **Note that first command, cluster creation, will take approximately 20 minutes**
 7. Run `helm-install-services.sh` script, which will
     - Install MariaDB, Grafana & Elasticseach microservices.
-8. Wait for 1 or 2 minutes & run `service-status.sh` script, to check microserices' status.
+8. Wait for 2 or 3 minutes & run `service-status.sh` script, to check microserices' status.
     - You can (should) use also `kubectl get pods` & `kubectl get svc` commands to get status of Pods and Services.
-9. Once demo is finished run `clean-up.sh` script to delete all CF Stacks.
+9. Once demo is finished run `clean-up.sh` script to delete all microservices & CF Stacks.
     - **Note that this proccess is also will take around 20 minutes.**
 10. **Terminate EC2 Instance from Step 1.**
+11. **Delete all newly created volumes from EC2 dashboard.**
 
 References:
 - https://eksctl.io/introduction/
 - https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
 - https://helm.sh/docs/intro/using_helm/
+- https://github.com/gruntwork-io/helm-kubernetes-services/blob/main/charts/k8s-service/README.md#loadbalancer-service-type

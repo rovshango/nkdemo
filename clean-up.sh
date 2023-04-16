@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+helm uninstall grafana
+helm uninstall elasticsearch
+helm uninstall mariadb
+
 # Delete stack named eksctl-dev-addon-iamserviceaccount-kube-system-ebs-csi-controller-sa from CloudFourmation page
 aws cloudformation delete-stack --stack-name eksctl-dev-addon-iamserviceaccount-kube-system-ebs-csi-controller-sa
 
