@@ -6,13 +6,13 @@ MYSQL_PASSWORD=$(kubectl get secret --namespace default mariadb -o jsonpath="{.d
 MYSQL_DATABASE="my_database"
 
 # Check if the MySQL service is accessible with provided credentials
-if ! mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD -e "SELECT 1;" $MYSQL_DATABASE; then
+if ! kubectl run mariadb-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mariadb:10.6.12-debian-11-r16 --namespace default --command -- mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD -e "SELECT 1;" $MYSQL_DATABASE; then
   echo "Unable to connect to MySQL service"
   exit 1
 fi
 
 # Check if the MySQL service is healthy
-if ! mysqlcheck -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD --check $MYSQL_DATABASE; then
+if ! kubectl run mariadb-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mariadb:10.6.12-debian-11-r16 --namespace default --command -- mysqlcheck -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD --check $MYSQL_DATABASE; then
   echo "MySQL service is not healthy"
   exit 1
 fi
