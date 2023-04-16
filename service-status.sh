@@ -42,17 +42,3 @@ ESTATUS=$(curl -s -k --user elastic:${EPASSWD} -X GET "https://${ELASTIC_IP}:920
     printf "\033[31mError: elasticsearch is not running or accessible or healthy.\033[0m\n"
     exit 1
   fi
-
-printf "\033[34mChecking mariadb service.\033[0m\n"
-
-# Get the MariaDB service URL
-#MARIADB_IP=$(kubectl get svc mariadb -o=jsonpath='{.spec.clusterIP}')
-
-# Check if the MariaDB service is running
-#curl -I http://$MARIADB_IP:3306
-
-# Check if the MariaDB service is accessible
-#mysql -h $MARIADB_IP -u myuser -p -e "SHOW DATABASES;"
-
-# Check if the MariaDB service is healthy
-#mysql -h $MARIADB_IP -u myuser -p mydatabase -e "SELECT * FROM mytable;"
