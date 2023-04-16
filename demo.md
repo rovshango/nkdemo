@@ -1,21 +1,23 @@
 This repository contains files and instructions to demonstrate the following:
 
-Setting up an AWS EKS cluster via the eksctl tool
-Installing MariaDB, Grafana, and Elasticsearch services via Helm charts as a POC
-Getting the status of the aforementioned services—whether they are running, accessible, and healthy—is also important.
-Please read all instructions and script comments before implementing them.
+- Setting up an AWS EKS cluster via the eksctl tool
+- Installing MariaDB, Grafana, and Elasticsearch services via Helm charts as a POC
+- Getting the status of the aforementioned services—whether they are running, accessible, and healthy—is also important.
+
+**Please read all instructions and script comments before implementing them.**
 
 Prerequisites:
 
-AWS Console account
-Basic knowledge of how to operate in the AWS console
-Experience in launching, accessing, and managing EC2 instances.
-Experience in creating policies and users in the AWS IAM service.
-Experience in Kubernetes cluster management using the kubectl command line
-Experience with the Helm command-line tool
+- AWS Console account
+- Basic knowledge of how to operate in the AWS console
+- Experience in launching, accessing, and managing EC2 instances.
+- Experience in creating policies and users in the AWS IAM service.
+- Experience in Kubernetes cluster management using the kubectl command line
+- Experience with the Helm command-line tool
+
 Steps:
 
-Create a simple Amazon Linux EC2 instance that is accessible over the internet (SSH).
+1. Create a simple Amazon Linux EC2 instance that is accessible over the internet (SSH).
 Once the instance is up and running, connect to it and install the git tool. sudo yum install git -y
 Clone repository into an EC2 instance: git clone https://github.com/rovshango/nkdemo.git
 Change to the repository directory: cd nkdemo
