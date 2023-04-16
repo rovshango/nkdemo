@@ -48,7 +48,7 @@ ELASTIC_IP=$(kubectl get svc elasticsearch-master --output jsonpath='{.status.lo
 EPASSWD=$(kubectl get secrets --namespace=default elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d)
 
 # Check if the Elasticsearcg service is running
-if [[ ${GSTATUS} == "Running Running Running" ]]; then
+if [[ ${ESTATUS} == "Running Running Running" ]]; then
   printf "\033[32mSuccess: at least one elasticsearc pod is running.\033[0m\n"
 else
   printf "\033[31mError: elasticsearch is not running.\033[0m\n"
