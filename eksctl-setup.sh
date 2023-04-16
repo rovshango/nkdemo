@@ -1,5 +1,5 @@
 # create eks cluster with 3 worker nodes
-# following command will take approx. 20-25 min to finish 
+# following command will take approx. 15 min to finish 
 # in case of error either re-run or change availabilty zones
 # while this command is running, check cloud formation page in aws console, to see stacks status
 eksctl create cluster --name dev --region us-east-1 --zones us-east-1a,us-east-1b --node-zones us-east-1a,us-east-1b --nodegroup-name ng-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 4 --managed

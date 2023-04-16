@@ -32,7 +32,7 @@ Steps:
 6. Follow and run commands in `eksctl.sh` file;
     - **Read comments of each command group before runnings them.**
     - **Best practice to run commands in batch, in order troubleshoot any errors in case of failure.**
-    - **Note that first command, cluster creation, will take approximately 20 minutes**
+    - **Note that first command, cluster creation, will take approximately 15 minutes**
 7. Run `helm-install-services.sh` script, which will
     - Install MariaDB, Grafana & Elasticseach microservices.
 8. Wait for 2 or 3 minutes & run `service-status.sh` script, to check microserices' status.
