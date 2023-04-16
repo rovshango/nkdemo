@@ -38,9 +38,10 @@ Steps:
 8. Wait for 1 or 2 minutes & run `service-status.sh` script, to check microserices' status.
     - You can (should) use also `kubectl get pods` & `kubectl get svc` commands to get status of Pods and Services.
 9. Once demo is finished run `clean-up.sh` script to delete all CF Stacks.
-    - Note that this proccess is also will take around 20 minutes.
-10. Terminate EC2 Instance from Step 1.
+    - **Note that this proccess is also will take around 20 minutes.**
+10. **Terminate EC2 Instance from Step 1.**
 
 References:
 - https://eksctl.io/introduction/
 - https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
+- https://helm.sh/docs/intro/using_helm/
