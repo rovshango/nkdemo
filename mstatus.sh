@@ -6,6 +6,14 @@ MYSQL_HOST="mariadb.default.svc.cluster.local"
 MYSQL_USER="root"
 MYSQL_PASSWORD=$(kubectl get secret --namespace default mariadb -o jsonpath="{.data.mariadb-root-password}" | base64 -d)
 MYSQL_DATABASE="my_database"
+MYSQL_STATUS=$(kubectl get pods --selector=app.kubernetes.io/name=mariadb -o jsonpath='{.items[*].status.phase}')
+
+# Check if the MySQL service is accessible with provided credentials
+if [ ${MYSQL_STATUS} == "Running" ]; then
+  printf "\033[32mSuccess: mariadb is running.\033[0m\n"
+else
+  printf "\033[31mError: mariadb is not running.\033[0m\n"
+fi
 
 # Check if the MySQL service is accessible with provided credentials
 if ! kubectl run mariadb-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mariadb:10.6.12-debian-11-r16 --namespace default --command -- mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD -e "SELECT 1;" $MYSQL_DATABASE > /dev/null; then
