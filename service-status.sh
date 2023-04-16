@@ -49,7 +49,7 @@ EPASSWD=$(kubectl get secrets --namespace=default elasticsearch-master-credentia
 
 # Check if the Elasticsearcg service is running
 if [[ ${ESTATUS} == "Running Running Running" ]]; then
-  printf "\033[32mSuccess: at least one elasticsearc pod is running.\033[0m\n"
+  printf "\033[32mSuccess: elasticsearch is running.\033[0m\n"
 else
   printf "\033[31mError: elasticsearch is not running.\033[0m\n"
 fi
