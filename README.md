@@ -46,4 +46,3 @@ References:
 - https://eksctl.io/introduction/
 - https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
 - https://helm.sh/docs/intro/using_helm/
-- https://github.com/gruntwork-io/helm-kubernetes-services/blob/main/charts/k8s-service/README.md#loadbalancer-service-type
