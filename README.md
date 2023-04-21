@@ -15,6 +15,9 @@ Prerequisites:
 - Experience in Kubernetes cluster management, using the kubectl command line
 - Experience with the Helm command line tool
 
+<img src="https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2020/04/10/eks_architecture.png" alt="EKS Cluster Architecture">
+
+
 Steps:
 
 1. Create a simple Amazon Linux EC2 Instance that is accessible over the internet (SSH).
